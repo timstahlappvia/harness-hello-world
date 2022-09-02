@@ -1,0 +1,17 @@
+# For WF >= 1.3
+apiVersion: package.appvia.io/v1alpha1
+kind: GlobalHelm
+metadata:
+  name: log
+spec:
+  summary: "Standard Log Management"
+  installNamespace: logmgmt
+  source:
+    helm:
+      name: logstash
+      url: https://charts.bitnami.com/bitnami
+      version: "5.0.5"
+  selectors:
+    matchLabels:
+      appvia.io/stage: nonprod
+      appvia.io/provider: EKS

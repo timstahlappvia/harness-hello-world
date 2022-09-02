@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gohw
+  labels:
+    app: gohw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gohw
+  template:
+    metadata:
+      labels:
+        app: gohw
+    spec:
+      containers:
+      - name: gohw
+        image: tstahlfsu/gohwapp:latest
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gohw-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: gohw
+  ports:
+    - port: 80
+      targetPort: 8080
